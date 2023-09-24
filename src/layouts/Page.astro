@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+	<article class="mb-12">
+		<div class="prose lg:prose-xl">
+			<div class="title">
+				<h1 class="heading">{title}</h1>
+			</div>
+			<slot />
+		</div>
+	</article>
+</Layout>
+
+<style>
+	.heading {
+		margin-top: 1rem;
+	}
+</style>

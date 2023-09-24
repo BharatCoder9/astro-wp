@@ -37,6 +37,7 @@ function resolveContentTemplate(node){
 
 const Template = resolveContentTemplate(node)
 
+Astro.response.headers.set('Cache-Control','max-age=600, must-revalidate');
 ---
 
 <Layout 
