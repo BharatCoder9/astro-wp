@@ -1,8 +1,7 @@
 ---
-import Hero from "../components/Hero.astro";
 import PostCard from "../components/PostCard.astro";
-import MainLayout from "../layouts/MainLayout.astro";
-import { homePagePostsQuery } from "../lib/api";
+import Layout from "../layouts/Layout.astro";
+import { homePagePostsQuery } from "../lib/wpapi";
 
 const data = await homePagePostsQuery();
 const posts = data.posts.nodes;
@@ -11,9 +10,8 @@ Astro.response.headers.set('Cache-Control','max-age=600, must-revalidate');
 
 ---
 
-<MainLayout title='Home Page'>
+<Layout title='Home Page'>
 	<main>
-		<Hero></Hero>
 		<h2>Recent Posts</h2>
 		{
 			posts.map(post => {
@@ -23,4 +21,4 @@ Astro.response.headers.set('Cache-Control','max-age=600, must-revalidate');
 			})
 		}
 	</main>
-</MainLayout>
+</Layout>

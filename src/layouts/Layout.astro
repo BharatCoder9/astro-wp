@@ -1,0 +1,25 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+
+import SiteNav from "../components/SiteNav.astro"; 
+import SiteFooter from "../components/SiteFooter.astro";
+import { navQuery } from "../lib/wpapi";
+const { menus, generalSettings } = await navQuery();
+const primaryMenu = menus.nodes[0];
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="bg-base-100">
+	<head>
+		<BaseHead title={`${title} | ${generalSettings.title}`} description={description} />
+	</head>
+	<body>
+		<SiteNav menu={primaryMenu} generalSettings={generalSettings}></SiteNav>
+		<main class="mx-auto max-w-3xl py-12 px-4">
+			<slot></slot>
+		</main>
+		<SiteFooter menu={primaryMenu} generalSettings={generalSettings}></SiteFooter>
+	</body>
+</html>

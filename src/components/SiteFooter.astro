@@ -1,12 +1,15 @@
 ---
-
+const {menu, generalSettings} = Astro.props;
 ---
-<style>
-    footer p {
-        text-align: center;
-    }
-</style>
-<hr>
-<footer>
-    <p>Made with ❤️ by <a href='https://developers.wpengine.com/'>WP Engine Dev Rel</a></p>
-</footer>
+<footer class="footer footer-center p-10 bg-base-200 text-base-content rounded">
+    <nav class="grid grid-flow-col gap-4">
+        {menu.menuItems.nodes.map(menuItem => {
+            return (
+                        <a class="link link-hover"href={menuItem.uri || '/'}>{menuItem.label}</a>
+                )
+        })}
+    </nav> 
+    <aside>
+      <p>Copyright © 2023 - All right reserved</p>
+    </aside>
+  </footer>

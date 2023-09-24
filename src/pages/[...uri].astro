@@ -1,9 +1,9 @@
 ---
 export const prerender = true;
-import MainLayout from "../layouts/MainLayout.astro";
-import Archive from "../components/templates/Archive.astro";
-import Single from "../components/templates/Single.astro";
-import { getNodeByURI, getAllUris } from "../lib/api";
+import Layout from "../layouts/Layout.astro";
+import Archive from "../components/Archive.astro";
+import Single from "../components/Single.astro";
+import { getNodeByURI, getAllUris } from "../lib/wpapi";
 const uri = `/${Astro.params.uri}/`;
 const data = await getNodeByURI(uri);
 const node = data.nodeByUri;
@@ -14,6 +14,7 @@ export async function getStaticPaths(){
 
 function resolveContentTemplate(node){ 
     let template;
+    if (!node) return Single;
     switch(node.__typename){
         case 'Post':
             template = Single;
@@ -38,9 +39,9 @@ const Template = resolveContentTemplate(node)
 
 ---
 
-<MainLayout 
+<Layout 
  title={ node.title || node.name}
  description={ node.excerpt }
 >
         <Template node={node}></Template>
-</MainLayout>
+</Layout>
