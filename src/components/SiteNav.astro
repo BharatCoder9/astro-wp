@@ -8,7 +8,7 @@ const {menu, generalSettings} = Astro.props;
 			<h2 class="text-lg md:text-xl font-bold ml-3"><a href="/">{generalSettings.title}</a></h2>
 		</div>
 		<div class="navbar-center">
-			<ul class="menu menu-horizontal text-sm md:text-lg px-1">
+			<ul class="menu menu-horizontal text-sm md:text-base px-1">
 				{menu.menuItems.nodes.map(menuItem => {
           return (<li>
                       <a href={menuItem.uri || '/'}>{menuItem.label}</a>
